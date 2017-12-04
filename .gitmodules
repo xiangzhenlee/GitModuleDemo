@@ -10,3 +10,6 @@
 [submodule "lib_base"]
 	path = lib_base
 	url = https://github.com/xiangzhenlee/lib_base.git
+[submodule "lib_http"]
+	path = lib_http
+	url = https://github.com/xiangzhenlee/lib_http.git
