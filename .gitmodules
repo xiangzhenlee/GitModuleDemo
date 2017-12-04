@@ -1,3 +1,6 @@
 [submodule "module_login"]
 	path = module_login
 	url = https://github.com/xiangzhenlee/module_login.git
+[submodule "module_compete"]
+	path = module_compete
+	url = https://github.com/xiangzhenlee/module_compete.git
