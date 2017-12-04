@@ -4,3 +4,6 @@
 [submodule "module_compete"]
 	path = module_compete
 	url = https://github.com/xiangzhenlee/module_compete.git
+[submodule "module_club"]
+	path = module_club
+	url = https://github.com/xiangzhenlee/moudle_club.git
