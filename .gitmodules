@@ -7,3 +7,6 @@
 [submodule "module_club"]
 	path = module_club
 	url = https://github.com/xiangzhenlee/moudle_club.git
+[submodule "lib_base"]
+	path = lib_base
+	url = https://github.com/xiangzhenlee/lib_base.git
