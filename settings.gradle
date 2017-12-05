@@ -1,1 +1,1 @@
-include ':module_app', ':module_login'
+include ':module_app', ':module_login', ':module_compete', ':module_club', ':lib_base', ':lib_http'
