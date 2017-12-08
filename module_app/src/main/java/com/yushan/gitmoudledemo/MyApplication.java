@@ -11,7 +11,7 @@ import com.yushan.lib_base.utils.Utils;
 /**
  * <p>这里仅需做一些初始化的工作</p>
  *
- * @author 张华洋 2017/2/15 20:14
+ * @author yushan
  * @version V1.2.0
  * @name MyApplication
  */
