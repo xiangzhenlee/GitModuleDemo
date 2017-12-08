@@ -1,30 +1,63 @@
 apply plugin: 'com.android.application'
 
+static def buildTime() {
+    return new Date().format("yyyyMMdd");
+}
+
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.yushan.gitmoudledemo"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.guiying.module"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        multiDexEnabled true
+        //打包时间
+        resValue "string", "build_time", buildTime()
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            //更改AndroidManifest.xml中预先定义好占位符信息
+            //manifestPlaceholders = [app_icon: "@drawable/icon"]
+            // 不显示Log
+            buildConfigField "boolean", "LEO_DEBUG", "false"
+            //是否zip对齐
+            zipAlignEnabled true
+            // 缩减resource文件
+            shrinkResources true
+            //Proguard
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            //给applicationId添加后缀“.debug”
+            applicationIdSuffix ".debug"
+            //manifestPlaceholders = [app_icon: "@drawable/launch_beta"]
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            debuggable true
         }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.1'
+    if (isModule.toBoolean()) {
+        compile project(':lib_base')
+        compile project(':lib_http')
+    } else {
+        compile project(':module_login')
+        compile project(':module_compete')
+        compile project(':module_club')
+    }
 }
